@@ -1,46 +1,43 @@
 import customtkinter as tk
 from PIL import Image
+from tkinter import font
+import time
+
+font = ("JetBrains Mono", 14)
+
+def on_button_click():
+    time.sleep(5.5)
+    image = tk.CTkImage(Image.open(r"C:\Users\oi417717\Documents\ProjetosPython\bob_espoja_mandrake.png"), size=(200,200))
+    image_button = tk.CTkButton(master=myapp, text="Tudo certo meu patrão, \n seu cartão não foi clonado...", image=image, font=font, fg_color="grey")
+    image_button.grid(row=15, column=0, padx=10)
 
 myapp = tk.CTk()
 
 myapp.title("Consultar Cartão")
-myapp.geometry("480x480")
+myapp.geometry("600x600")
 
 informacao_inicial = tk.CTkLabel(myapp, 
                                  text="CONSULTE SE SEU CARTÃO FOI CLONADO!", 
-                                 compound="center")
-informacao_inicial.grid(row=0, column=0, columnspan=2, pady=10)
+                                 compound="center", font=font).grid(row=0, column=0, columnspan=1, pady=10)
 
-nome_completo = tk.CTkLabel(myapp, text="Informe seu NOME COMPLETO")
-nome_completo.grid(row=1, column=0, sticky="w", padx=10)
+nome_completo = tk.CTkLabel(myapp, 
+                            text="Informe seu NOME COMPLETO", font=font).grid(row=1, column=0, sticky="w", padx=10)
+input_nome_completo = tk.CTkEntry(myapp, 
+                                  width=300).grid(row=2, column=0, padx=10, sticky="w")
+dados_cartao = tk.CTkLabel(myapp, text="Informe todos os NÚMEROS DO SEU CARTÃO", font=font).grid(row=3, column=0, sticky="w", padx=10, pady=5)
+inserir_dados_cartao = tk.CTkEntry(myapp, 
+                                   width=150).grid(row=4, column=0, padx=10, sticky="w")
+dt_vencimento = tk.CTkLabel(myapp, 
+                            text="Informe a DATA de VENCIMENTO do seu cartão: MÊS/ANO", font=font).grid(row=5, column=0, padx=10, sticky="w")
+inserir_dt_vencimento = tk.CTkEntry(myapp, width=30).grid(row=6, column=0, padx=10, sticky="w")
+inserir_dt_vencimento = tk.CTkEntry(myapp, width=60).grid(row=6, column=0, padx=45, sticky="w")
+cvv = tk.CTkLabel(myapp, 
+                  text="Informe o CVV do seu cartão", font=font).grid(row=7, column=0, padx=10, sticky="w")
+inserir_cvv = tk.CTkEntry(myapp, width=40).grid(row=8, column=0, padx=10, sticky="w")
+consultar = tk.CTkButton(master=myapp, 
+                         text="Consultar", command=on_button_click).grid(row=12, column=0, padx=10, pady=15, sticky="w")
+clean = tk.CTkButton(master=myapp, 
+                     text="Sair", command=myapp.destroy).grid(row=12, column=0, padx=200, pady=15, sticky="w")
 
-input_nome_completo = tk.CTkEntry(myapp, width=300)
-input_nome_completo.grid(row=1, column=1, padx=10)
-
-dados_cartao = tk.CTkLabel(myapp, text="Informe todos os NÚMEROS DO SEU CARTÃO")
-dados_cartao.grid(row=2, column=0, sticky="w", padx=10)
-
-inserir_dados_cartao = tk.CTkEntry(myapp, width=150)
-inserir_dados_cartao.grid(row=2, column=1, padx=10)
-
-dt_vencimento = tk.CTkLabel(myapp, text="Informe a DATA de VENCIMENTO do seu cartão")
-dt_vencimento.grid(row=3, column=0, sticky="w", padx=10)
-
-inserir_dt_vencimento = tk.CTkEntry(myapp, width=60)
-inserir_dt_vencimento.grid(row=3, column=1, padx=10)
-
-cvv = tk.CTkLabel(myapp, text="Informe o CVV do seu cartão")
-cvv.grid(row=4, column=0, sticky="w", padx=10)
-
-inserir_cvv = tk.CTkEntry(myapp, width=40)
-inserir_cvv.grid(row=4, column=1, padx=10)
-
-image = tk.CTkImage(Image.open(r"C:\Users\oi417717\Downloads\bob_espoja_mandrake.png"), size=(200,200))
-image_button = tk.CTkButton(master=myapp, text="Pode confiar, seus dados estão seguros", image=image)
-image_button.grid(row=5, column=0, padx=10, pady=20)
-
-image2 = tk.CTkImage(Image.open(r"C:\Users\oi417717\Downloads\palhaco_mandrake.png"), size=(200,200))
-image_button2 = tk.CTkButton(master=myapp, text="", image=image2, state="disabled", compound="left")
-image_button2.grid(row=5, column=1, padx=10, pady=20)
 
 myapp.mainloop()
